@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Diabetes Prediction</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+</head>
+
+<body>
+ <div class="login">
+	<h1>Diabetes Prediction</h1>
+    <div class="box-form">
+      <div class="left">
+        <div class="overlay">
+          <h2>Diabetes Prediction</h2>
+          <p>Diabetes is a disease that occurs when your blood glucose, also called blood sugar, is too high. Blood glucose is your main source of energy and comes from the food you eat. Insulin, a hormone made by the pancreas, helps glucose from food get into your cells to be used for energy. Sometimes your body doesn’t make enough—or any—insulin or doesn’t use insulin well. Glucose then stays in your blood and doesn’t reach your cells.</p>
+          <p>Over time, having too much glucose in your blood can cause health problems. Although diabetes has no cure, you can take steps to manage your diabetes and stay healthy.</p>
+          <p>Diabetes is a serious disease. It can often be managed by following a healthy diet, exercising regularly, and using insulin treatments. But if left untreated, it can lead to potential complications that include heart disease, stroke, kidney damage, and nerve damage.</p>
+          <p>Diabetes is a chronic disease that occurs either when the pancreas does not produce enough insulin or when the body cannot effectively use the insulin it produces. Insulin is a hormone that regulates blood sugar. Hyperglycaemia, or raised blood sugar, is a common effect of uncontrolled diabetes and over time leads to serious damage to many of the body's systems, especially the nerves and blood vessels.</p>
+          <p>In 2014, 8.5% of adults aged 18 years and older had diabetes. In 2012 diabetes was the direct cause of 1.5 million deaths. More than 80% of diabetes deaths occur in low- and middle-income countries. WHO projects that diabetes will be the 7th leading cause of death in 2030.</p>
+          <p>Healthy diet, regular physical activity, maintaining a normal body weight and avoiding tobacco use are ways to prevent or delay the onset of type 2 diabetes.</p>
+          <p>Diabetes can be treated and its consequences avoided or delayed with diet, physical activity, medication and regular screening and treatment for complications.</p>
+          <p>Source: <a href="http://www.who.int/mediacentre/factsheets/fs312/en/">WHO</a></p>
+          <div class="info">
+            <h3>Average Values:</h3>
+              <p>Glucose: 80-120 mg/dL</p>
+              <p>Blood Pressure: 66-160 mm Hg</p>
+              <p>Skin Thickness: 0.5-3 mm</p>
+              <p>Insulin: 16-166 mIU/L</p>
+              <p>BMI: 18.5-24.9 kg/m2</p>
+              <p>Diabetes Pedigree Function: 0.078-2.42</p>
+            <h3>Diabetes values:</h3>
+              <p>Glucose: >200 mg/dL</p>
+              <p>Blood Pressure: >140 mm Hg</p>
+              <p>Skin Thickness: >3 mm</p>
+              <p>Insulin: >166 mIU/L</p>
+              <p>BMI: >30 kg/m2</p>
+              <p>Diabetes Pedigree Function: >2.42</p>
+        </div>
+        </div>
+      </div>
+      <div class="right">
+     <!-- Main Input For Receiving Query to our ML -->
+        <form class="forms" action="{{ url_for('predict_datapoint')}}" method="post">
+            <h3 class="form-head">Fill the details appropriately</h3>
+            <input type="text" name="name" placeholder="Name" required="required" /><br>
+            <input type="text" name="Pregnancies" placeholder="No of Pregnancies" required="required" /><br>
+            <input type="text" name="Glucose" placeholder="Glucose" required="required" /><br>
+            <input type="text" name="BloodPressure" placeholder="Blood Pressure (66-160mm Hg)" required="required" /><br>
+            <input type="text" name="SkinThickness" placeholder="Skin Thickness" required="required" /><br>
+            <input type="text" name="Insulin" placeholder="Insulin" required="required" /><br>
+            <input type="text" name="BMI" placeholder="BMI" required="required" /><br>
+            <input type="text" name="DiabetesPedigreeFunction" placeholder="Diabetes Pedigree Function" required="required" /><br>
+            <input type="text" name="Age" placeholder="Age" required="required" /><br>
+            <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        </form>
+      </div>
+<body>
+
+   <br>
+   <br>
+
+
+ </div>
+ {{result}}
+ {{name}}
+ {{Age}}
+ {{BMI}}
+</body>
+</html>
