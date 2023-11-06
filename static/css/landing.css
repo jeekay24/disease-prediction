@@ -1,0 +1,16 @@
+.report .left{
+    width: 90%;
+    height: 100%;
+    background: #fff;
+    padding :2rem;
+    margin:1rem;
+    overflow: hidden;
+    border: 1px solid black;
+}
+.report .left .p{
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 1rem;
+    padding: 1rem;
+    
+}

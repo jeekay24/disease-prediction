@@ -4,19 +4,28 @@
     <title>Patient's Diabetes Results</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/landing.css') }}">
 </head>
 <body>
     <div class="report">
-        <h1>Diabetes Reporrt</h1>
+        <h1>Diabetes Report</h1>
         <div class="left">
-            <h2> Person Particulars</h2>
+            <h2 style="text-decoration: underline;"> Patient Particulars</h2>
                 <p> Name: {{name}}</p>
                 <p> Age: {{Age}}</p>
                 <p>Height: {{Height}}</p>
                 <p>Weight: {{Weight}}</p>
                 <p>BMI: {{BMI}}</p>
                 <p>Gender: {{Gender}}</p>
+        </div>
+        <div class="right">
+            <h2 style="text-decoration: underline;">Body Particulars</h2>
+                <p>Glucose: {{Glucose}}</p>
+                <p>Blood Pressure: {{BloodPressure}}</p>
+                <p>Skin Thickness: {{SkinThickness}}</p>
+                <p>Insulin: {{Insulin}}</p>
+                <p>Pregnancies: {{Pregnancies}}</p>
+                <p>Diabetes Pedigree Function: {{DiabetesPedigreeFunction}}</p>
         </div>
     </div>
     

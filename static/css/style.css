@@ -98,6 +98,11 @@ body{
     outline: none;
     border-bottom: 2px solid black;
 }
+.gender {
+  display: flex;
+  flex-direction:row;
+
+}
 .box-form .right {
     display: flex;
     justify-content: space-between;
