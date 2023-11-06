@@ -1,40 +1,58 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Patient's Diabetes Results</title>
+    <title>{{name}}'s Diabetes Results</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/landing.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
+    <h1 style="text-align:center;">Diabetes Report</h1>
+    <br>
     <div class="report">
-        <h1>Diabetes Report</h1>
         <div class="left">
             <h2 style="text-decoration: underline;"> Patient Particulars</h2>
                 <p> Name: {{name}}</p>
                 <p> Age: {{Age}}</p>
-                <p>Height: {{Height}}</p>
-                <p>Weight: {{Weight}}</p>
-                <p>BMI: {{BMI}}</p>
-                <p>Gender: {{Gender}}</p>
+                <p>Height: {{Height}}cms</p>
+                <p>Weight: {{Weight}}kgs</p>
+                <p>BMI: {{BMI}} kg/m<sup>2</sup></p>
+                <p>Gender: {{gender}}</p>
         </div>
         <div class="right">
             <h2 style="text-decoration: underline;">Body Particulars</h2>
-                <p>Glucose: {{Glucose}}</p>
-                <p>Blood Pressure: {{BloodPressure}}</p>
-                <p>Skin Thickness: {{SkinThickness}}</p>
-                <p>Insulin: {{Insulin}}</p>
+            {% if Glucose <= 99 %}
+                <p>Glucose: <span style="color: green;"><strong>{{Glucose}} mg/dL</strong></span></p>
+            {% elif Glucose >= 100 and Glucose <= 125 %}
+                <p>Glucose: <span style="color: #DBA800;"><strong>{{Glucose}} mg/dL</strong></span></p>
+            {% else %}
+                <p>Glucose: <span style="color: red;"><strong>{{Glucose}} mg/dL</strong></span></p>
+            {% endif %}
+
+                <p>Blood Pressure: {{BloodPressure}} mmHg</p>
+                <p>Skin Thickness: {{SkinThickness}} mm</p>
+                <p>Insulin: {{Insulin}} mcU/mL</p>
                 <p>Pregnancies: {{Pregnancies}}</p>
                 <p>Diabetes Pedigree Function: {{DiabetesPedigreeFunction}}</p>
         </div>
     </div>
-    
+    <div class="result">
+        <h2 style="text-decoration: underline;">Result:</h2>
+        {% if result == 'Diabetic' %}
+            <p style="color:red;"><strong>{{result}}</strong></p>
+        {% else %}
+            <p style="color:green;"><strong>{{result}}</strong></p>
+        {% endif %}
+    </div>
 
+    <div class="end">
+        <p>Thank you for using our service. We hope you have a great day ahead!</p>
+        <p > Get Well Soon !! </p>
+        <p style="text-align:center;">***************End of the Report***************<p>
+    </div>
 
-
-
-
-
-
-
-<h1>Person {{name}} is: {{result}}</h1>
+<div class="print">
+        <button class="print-button" onclick="printContent()">Print Report</button>
+</div>

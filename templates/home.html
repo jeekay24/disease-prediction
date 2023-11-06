@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Diabetes Prediction</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
 <body>
@@ -44,15 +45,19 @@
         <form class="forms" action="{{ url_for('predict_datapoint')}}" method="post">
             <h3 class="form-head">Fill the details appropriately</h3>
             <input type="text" name="name" placeholder="Name" required="required" /><br>
-            <div class="gender">
-            <label for="male">Male</label>
-        <input type="radio" id="male" name="gender" value="male">
-        
-        <label for="female">Female</label>
-        <input type="radio" id="female" name="gender" value="female">
-        
-        <label for="other">Other</label>
-        <input type="radio" id="other" name="gender" value="other">
+            <input type="text" name="Age" placeholder="Age" required="required" /><br>
+
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+              <label for="gender">Gender:</label>
+                <input type="radio" class="btn-check" name="gender" id="btnradio1" autocomplete="off" value="Male" required>
+                <label class="btn btn-outline-primary" for="btnradio1">Male</label>
+              
+                <input type="radio" class="btn-check" name="gender" id="btnradio2" autocomplete="off" value="Female" required>
+                <label class="btn btn-outline-primary" for="btnradio2">Female</label>
+              
+                <input type="radio" class="btn-check" name="gender" id="btnradio3" autocomplete="off" value="Others" required>
+                <label class="btn btn-outline-primary" for="btnradio3">Others</label>
+              
             </div>
             <input type="text" name="Pregnancies" placeholder="No of Pregnancies" required="required" /><br>
             <input type="text" name="Glucose" placeholder="Glucose" required="required" /><br>
@@ -61,7 +66,6 @@
             <input type="text" name="Insulin" placeholder="Insulin" required="required" /><br>
             <input type="text" name="BMI" placeholder="BMI" required="required" /><br>
             <input type="text" name="DiabetesPedigreeFunction" placeholder="Diabetes Pedigree Function" required="required" /><br>
-            <input type="text" name="Age" placeholder="Age" required="required" /><br>
             <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
         </form>
       </div>
@@ -82,5 +86,6 @@
  {{SkinThickness}}
  {{Insulin}}
  {{DiabetesPedigreeFunction}}
+ {{gender}}
 </body>
 </html>
