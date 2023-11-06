@@ -16,3 +16,25 @@ function test_result(){
         console.log("Hello");
     }
 }
+
+// script.js
+document.addEventListener('DOMContentLoaded', function () {
+    // Get references to the gender and pregnancies inputs
+    var genderInput = document.getElementsByName('gender');
+    var pregnanciesInput = document.getElementById('pregnanciesInput');
+
+    // Add an event listener to the gender inputs
+    for (var i = 0; i < genderInput.length; i++) {
+        genderInput[i].addEventListener('change', function () {
+            if (genderInput[0].checked) {
+                // Male is selected
+                pregnanciesInput.value = '0';
+                pregnanciesInput.readOnly='True';
+            } else {
+                // Female or Others is selected
+                pregnanciesInput.value = ''; // Clear the value
+                pregnanciesInput.readOnly=false;
+            }
+        });
+    }
+});

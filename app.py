@@ -30,15 +30,19 @@ def predict_datapoint():
 
     if request.method=='POST':
         name=request.form.get("name")
-        Pregnancies=int(request.form.get("Pregnancies"))
+        Age = int(request.form.get('Age'))
+        gender = request.form.get('gender')
+        if gender=='Male':
+            Pregnancies=0
+        if gender =='Female':
+            Pregnancies=int(request.form.get("Pregnancies"))
+
         Glucose = float(request.form.get('Glucose'))
         BloodPressure = float(request.form.get('BloodPressure'))
         SkinThickness = float(request.form.get('SkinThickness'))
         Insulin = float(request.form.get('Insulin'))
         BMI = float(request.form.get('BMI'))
         DiabetesPedigreeFunction = float(request.form.get('DiabetesPedigreeFunction'))
-        Age = int(request.form.get('Age'))
-        gender = request.form.get('gender')
         new_data=scaler.transform([[Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age]])
         predict=model.predict(new_data)
        

@@ -14,7 +14,7 @@
     <br>
     <div class="report">
         <div class="left">
-            <h2 style="text-decoration: underline;"> Patient Particulars</h2>
+            <h2 style="text-decoration: underline;">Patient Particulars</h2>
                 <p> Name: {{name}}</p>
                 <p> Age: {{Age}}</p>
                 <p>Height: {{Height}}cms</p>
@@ -25,13 +25,19 @@
         <div class="right">
             <h2 style="text-decoration: underline;">Body Particulars</h2>
             {% if Glucose <= 99 %}
-                <p>Glucose: <span style="color: green;"><strong>{{Glucose}} mg/dL</strong></span></p>
+                <p>Glucose: <span class="positive"><strong>{{Glucose}} mg/dL</strong></span> Normal range:80-120 mg/dL</p>
             {% elif Glucose >= 100 and Glucose <= 125 %}
-                <p>Glucose: <span style="color: #DBA800;"><strong>{{Glucose}} mg/dL</strong></span></p>
+                <p>Glucose: <span class="ideal"><strong>{{Glucose}} mg/dL</strong></span>Normal range:80-120 mg/dL</p>
             {% else %}
-                <p>Glucose: <span style="color: red;"><strong>{{Glucose}} mg/dL</strong></span></p>
+                <p>Glucose: <span class="negative"><strong>{{Glucose}} mg/dL</strong></span>Normal range: 80-120 mg/dL</p>
             {% endif %}
-                <p>Blood Pressure: {{BloodPressure}} mmHg</p>
+            {% if BloodPressure>=140 or BloodPressure<80 %}
+                <p>Blood Pressure:<span class="negative"><strong> {{BloodPressure}} mmHg </strong></span></p>
+            {% elif BloodPressure>=80 and BloodPressure<=130 %}
+                <p>Blood Pressure:<span class="positive"><strong> {{BloodPressure}} mmHg </strong></span></p>
+            {% else %}
+                <p>Blood Pressure:<span class="ideal"><strong> {{BloodPressure}} mmHg </strong></span></p>
+            {% endif %}
                 <p>Skin Thickness: {{SkinThickness}} mm</p>
                 <p>Insulin: {{Insulin}} mcU/mL</p>
                 <p>Pregnancies: {{Pregnancies}}</p>
@@ -41,16 +47,16 @@
     <div class="result">
         <h2 style="text-decoration: underline;">Result:</h2>
         {% if result == 'Diabetic' %}
-            <p style="color:red;"><strong>{{result}}</strong></p>
+            <p class="negative"><strong>{{result}}</strong></p>
         {% else %}
-            <p style="color:green;"><strong>{{result}}</strong></p>
+            <p class="positive"><strong>{{result}}</strong></p>
         {% endif %}
     </div>
 
     <div class="end">
         <p>Thank you for using our service. We hope you have a great day ahead!</p>
         <p>Get Well Soon !! </p>
-        <p style="text-align:center;">**********************<strong>End of the Report</strong>**********************<p>
+        <p>**********************<strong>End of the Report</strong>**********************</p>
     </div>
     <div class="print">
         <button class="print-button" onclick="printContent()">Print Report</button>

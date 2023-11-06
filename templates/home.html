@@ -5,6 +5,7 @@
   <title>Diabetes Prediction</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
   <link rel="icon" href="{{ url_for('static', filename='images/report.png') }}" type="image/x-icon">
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
@@ -49,7 +50,7 @@
             <input type="text" name="Age" placeholder="Age" required="required" /><br>
 
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-              <label for="gender">Gender:</label>
+              <label for="gender" style="margin-right:10px;">Gender : </label>
                 <input type="radio" class="btn-check" name="gender" id="btnradio1" autocomplete="off" value="Male" required>
                 <label class="btn btn-outline-primary" for="btnradio1">Male</label>
               
@@ -60,7 +61,7 @@
                 <label class="btn btn-outline-primary" for="btnradio3">Others</label>
               
             </div>
-            <input type="text" name="Pregnancies" placeholder="No of Pregnancies" required="required" /><br>
+            <input type="text" name="Pregnancies" id="pregnanciesInput" placeholder="No of Pregnancies" required="required" /><br>
             <input type="text" name="Glucose" placeholder="Glucose" required="required" /><br>
             <input type="text" name="BloodPressure" placeholder="Blood Pressure (66-160mm Hg)" required="required" /><br>
             <input type="text" name="SkinThickness" placeholder="Skin Thickness" required="required" /><br>
