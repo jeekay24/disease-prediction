@@ -3,6 +3,7 @@
 <head>
     <title>{{name}}'s Diabetes Results</title>
     <meta charset="utf-8" />
+    <link rel="icon" href="{{ url_for('static', filename='images/icons.png') }}" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/landing.css') }}">
     <script src="{{ url_for('static', filename='script.js') }}"></script>
@@ -30,7 +31,6 @@
             {% else %}
                 <p>Glucose: <span style="color: red;"><strong>{{Glucose}} mg/dL</strong></span></p>
             {% endif %}
-
                 <p>Blood Pressure: {{BloodPressure}} mmHg</p>
                 <p>Skin Thickness: {{SkinThickness}} mm</p>
                 <p>Insulin: {{Insulin}} mcU/mL</p>
@@ -49,10 +49,9 @@
 
     <div class="end">
         <p>Thank you for using our service. We hope you have a great day ahead!</p>
-        <p > Get Well Soon !! </p>
-        <p style="text-align:center;">***************End of the Report***************<p>
+        <p>Get Well Soon !! </p>
+        <p style="text-align:center;">**********************<strong>End of the Report</strong>**********************<p>
     </div>
-
-<div class="print">
+    <div class="print">
         <button class="print-button" onclick="printContent()">Print Report</button>
-</div>
+    </div>
