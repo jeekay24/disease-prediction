@@ -3,6 +3,7 @@
 <head>
     <title>{{name}}'s Diabetes Results</title>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="{{ url_for('static', filename='images/icons.png') }}" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/landing.css') }}">
@@ -10,11 +11,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-    <h1 style="text-align:center;">Diabetes Report</h1>
+    <h3 style="text-align:center;">Diabetes Report</h3>
     <br>
     <div class="report">
         <div class="left">
-            <h2 style="text-decoration: underline;">Patient Particulars</h2>
+            <h3 style="text-decoration: underline;">Patient Particulars</h3>
                 <p> Name: {{name}}</p>
                 <p> Age: {{Age}}</p>
                 <p>Height: {{Height}}cms</p>
@@ -23,13 +24,11 @@
                 <p>Gender: {{gender}}</p>
         </div>
         <div class="right">
-            <h2 style="text-decoration: underline;">Body Particulars</h2>
-            {% if Glucose <= 99 %}
+            <h3 style="text-decoration: underline;">Body Particulars</h3>
+            {% if Glucose >= 80 and Glucose<=120 %}
                 <p>Glucose: <span class="positive"><strong>{{Glucose}} mg/dL</strong></span> Normal range:80-120 mg/dL</p>
-            {% elif Glucose >= 100 and Glucose <= 125 %}
-                <p>Glucose: <span class="ideal"><strong>{{Glucose}} mg/dL</strong></span>Normal range:80-120 mg/dL</p>
-            {% else %}
-                <p>Glucose: <span class="negative"><strong>{{Glucose}} mg/dL</strong></span>Normal range: 80-120 mg/dL</p>
+            {% else %}    
+                <p>Glucose: <span class="negative"><strong>{{Glucose}} mg/dL</strong></span> Normal range: 80-120 mg/dL</p>
             {% endif %}
             {% if BloodPressure>=140 or BloodPressure<80 %}
                 <p>Blood Pressure:<span class="negative"><strong> {{BloodPressure}} mmHg </strong></span></p>
@@ -40,16 +39,53 @@
             {% endif %}
                 <p>Skin Thickness: {{SkinThickness}} mm</p>
                 <p>Insulin: {{Insulin}} mcU/mL</p>
+            {%if gender=="Female"%}
+                <p>Pregnancy Status: {{Pregnancy}}</p> 
                 <p>Pregnancies: {{Pregnancies}}</p>
+            {%endif%}
+
                 <p>Diabetes Pedigree Function: {{DiabetesPedigreeFunction}}</p>
         </div>
     </div>
     <div class="result">
-        <h2 style="text-decoration: underline;">Result:</h2>
+        <h3 style="text-decoration: underline;">Result:</h3>
         {% if result == 'Diabetic' %}
-            <p class="negative"><strong>{{result}}</strong></p>
+            <div class="diabetes">
+                <p class="negative"><strong>{{result}}</strong></p>
+                <blockquote>
+                    "Diabetes is just a chapter in your life, not the whole story. With strength, support, and determination, you can turn the page to a healthier future."
+                </blockquote>
+                <p>The patient is kindly advised to follow the following tips:</p>
+                <ul>
+                    <li>Visit a doctor for personalized guidance.</li>
+                    <li>Watch your blood sugar levels, blood pressure and cholesterol closely</li>
+                    <li>Eat a balanced diet with whole foods.</li>
+                    <li>Stay active through regular exercise.</li>
+                    <li>Manage your weight if necessary.</li>
+                    <li>Limit sugary and processed foods.</li>
+                    <li>Manage stress with relaxation techniques.</li>
+                    <li>Schedule regular check-ups with your doctor.</li>
+                </ul>
+                <p>Remember, managing diabetes is a unique journey for each person, so work closely with your healthcare team for the best results.</p>
+            </div>
         {% else %}
-            <p class="positive"><strong>{{result}}</strong></p>
+            <div class="non-diabetic">
+                <p class="positive"><strong>{{result}}</strong></p>
+                <blockquote>
+                    "A non-diabetic life is a gift. Embrace it with a commitment to health and wellness."
+                </blockquote>
+                <p>We encourage you to maintain your well-being with the following tips:</p>
+                <ul>
+                    <li>Adopt a balanced and healthy diet.</li>
+                    <li>Maintain a healthy weight to support your overall health.</li>
+                    <li>Prioritize stress management and relaxation techniques and engage in regular physical activities.</li>
+                    <li>Avoid excessive consumption of sugary or processed foods.</li>
+                    <li>Focus on whole foods, fruits, and vegetables in your diet.</li>
+                    <li>Stay hydrated by drinking enough water daily.</li>
+                    <li>Achieve a good work-life balance for mental and emotional well-being.</li>
+                </ul>
+                <p>Embrace a life of well-being, where prevention is your ally in staying non-diabetic and healthy.</p>
+            </div>
         {% endif %}
     </div>
 
@@ -61,3 +97,5 @@
     <div class="print">
         <button class="print-button" onclick="printContent()">Print Report</button>
     </div>
+</body>
+</html>

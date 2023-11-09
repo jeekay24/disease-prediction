@@ -20,7 +20,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-h1 {
+h3 {
     font-size: 24px;
     text-decoration: underline;
     margin-bottom: 15px;
@@ -63,4 +63,55 @@ button:hover{
 .end p{
     font-size: 16px;
     text-align: center;
+}
+.diabetes {
+    background-color: #FFA0A0;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.diabetes p {
+    font-size: 18px;
+}
+
+.diabetes blockquote {
+    font-size: 20px;
+    font-style: italic;
+    margin: 20px 0;
+}
+
+.diabetes ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.diabetes li {
+    font-size: 16px;
+}
+
+.non-diabetic {
+    background-color: #A0FFA0;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.non-diabetic p {
+    font-size: 18px;
+}
+
+.non-diabetic blockquote {
+    font-size: 20px;
+    font-style: italic;
+    margin: 20px 0;
+}
+
+.non-diabetic ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.non-diabetic li {
+    font-size: 16px;
 }

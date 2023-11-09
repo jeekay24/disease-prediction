@@ -17,24 +17,38 @@ function test_result(){
     }
 }
 
-// script.js
-document.addEventListener('DOMContentLoaded', function () {
-    // Get references to the gender and pregnancies inputs
-    var genderInput = document.getElementsByName('gender');
-    var pregnanciesInput = document.getElementById('pregnanciesInput');
 
-    // Add an event listener to the gender inputs
-    for (var i = 0; i < genderInput.length; i++) {
-        genderInput[i].addEventListener('change', function () {
-            if (genderInput[0].checked) {
-                // Male is selected
-                pregnanciesInput.value = '0';
-                pregnanciesInput.readOnly='True';
-            } else {
-                // Female or Others is selected
-                pregnanciesInput.value = ''; // Clear the value
-                pregnanciesInput.readOnly=false;
-            }
-        });
+
+// script.js
+document.addEventListener("DOMContentLoaded", function () {
+    var genderRadios = document.querySelectorAll('input[name="gender"]');
+    var pregnancyQuestion = document.getElementById('pregnancyQuestion');
+    var pregnanciesInput = document.getElementById('pregnanciesInput');
+    
+
+    // Function to show or hide the "Are you pregnant?" and "No of Pregnancies" fields
+    function togglePregnancyFields() {
+        if (genderRadios[1].checked) {
+            pregnancyQuestion.style.display = 'block';
+            pregnancyQuestion.required = true;
+            pregnanciesInput.style.display = 'block';
+            pregnanciesInput.required = true;
+            pregnanciesInput.style.marginBottom = '1rem';
+
+        } else {
+            pregnancyQuestion.style.display = 'none';
+            pregnancyQuestion.required = false;
+            pregnanciesInput.style.display = 'none';
+            pregnanciesInput.required = false;
+            pregnanciesInput.style.marginBottom = '0';
+        }
     }
+
+    // Add event listeners to gender radio buttons
+    genderRadios.forEach(function (radio) {
+        radio.addEventListener('change', togglePregnancyFields);
+    });
+
+    // Initial call to set the initial state
+    togglePregnancyFields();
 });

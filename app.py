@@ -34,8 +34,10 @@ def predict_datapoint():
         gender = request.form.get('gender')
         if gender=='Male':
             Pregnancies=0
+            pregnancy='No'
         if gender =='Female':
             Pregnancies=int(request.form.get("Pregnancies"))
+            pregnancy=request.form.get("pregnancy")
 
         Glucose = float(request.form.get('Glucose'))
         BloodPressure = float(request.form.get('BloodPressure'))
@@ -51,7 +53,7 @@ def predict_datapoint():
         else:
             result ='Non-Diabetic'
             
-        return render_template('single_prediction.html',result=result,name=name,Age=Age,BMI=BMI,Pregnancies=Pregnancies,Glucose=Glucose,BloodPressure=BloodPressure,Insulin=Insulin,DiabetesPedigreeFunction=DiabetesPedigreeFunction,SkinThickness=SkinThickness,gender=gender)
+        return render_template('single_prediction.html',result=result,name=name,Age=Age,BMI=BMI,Pregnancies=Pregnancies,Glucose=Glucose,BloodPressure=BloodPressure,Insulin=Insulin,DiabetesPedigreeFunction=DiabetesPedigreeFunction,SkinThickness=SkinThickness,gender=gender,Pregnancy=pregnancy)
 
     else:
         return render_template('home.html')

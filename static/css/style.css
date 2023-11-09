@@ -5,6 +5,7 @@ body{
     background-attachment: fixed;
     font-family: "Open Sans", sans-serif;
     color: #333333;
+    overflow-x: hidden;
 }
 .box-form {
     margin: 0 auto;
