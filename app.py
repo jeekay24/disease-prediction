@@ -4,6 +4,7 @@ from flask import Response
 from flask_cors import CORS
 import pickle
 import bz2
+import datetime
 import numpy as np
 import pandas as pd
 
@@ -27,6 +28,8 @@ model = pickle.load(modelforpred)
 @app.route('/',methods=['GET','POST'])
 def predict_datapoint():
     result=""
+    current_datetime = datetime.datetime.now()
+    f_datetime = current_datetime.strftime('%d-%m-%Y  %I:%M %p')
 
     if request.method=='POST':
         name=request.form.get("name")
@@ -45,6 +48,17 @@ def predict_datapoint():
         Insulin = float(request.form.get('Insulin'))
         BMI = float(request.form.get('BMI'))
         DiabetesPedigreeFunction = float(request.form.get('DiabetesPedigreeFunction'))
+        
+        #classification
+        if Glucose > 200 and Insulin < 10:
+            classification = 'Type 1 Diabetes'
+        elif Glucose > 126 and Insulin >= 10:
+            classification = 'Type 2 Diabetes'
+        elif Glucose > 92:
+            classification = 'Gestational Diabetes'
+        else:
+            classification = 'Unclassified Diabetes'
+
         new_data=scaler.transform([[Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age]])
         predict=model.predict(new_data)
        
@@ -53,7 +67,7 @@ def predict_datapoint():
         else:
             result ='Non-Diabetic'
             
-        return render_template('single_prediction.html',result=result,name=name,Age=Age,BMI=BMI,Pregnancies=Pregnancies,Glucose=Glucose,BloodPressure=BloodPressure,Insulin=Insulin,DiabetesPedigreeFunction=DiabetesPedigreeFunction,SkinThickness=SkinThickness,gender=gender,Pregnancy=pregnancy)
+        return render_template('single_prediction.html',result=result,name=name,Age=Age,BMI=BMI,Pregnancies=Pregnancies,Glucose=Glucose,BloodPressure=BloodPressure,Insulin=Insulin,DiabetesPedigreeFunction=DiabetesPedigreeFunction,SkinThickness=SkinThickness,gender=gender,Pregnancy=pregnancy,datetime=f_datetime,type=classification)
 
     else:
         return render_template('home.html')

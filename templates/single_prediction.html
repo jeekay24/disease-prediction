@@ -7,51 +7,102 @@
     <link rel="icon" href="{{ url_for('static', filename='images/icons.png') }}" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/landing.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/print.css') }}">
     <script src="{{ url_for('static', filename='script.js') }}"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
     <h3 style="text-align:center;">Diabetes Report</h3>
-    <br>
+    <p class="date">Report Generated on: {{datetime}}</p>
     <div class="report">
         <div class="left">
             <h3 style="text-decoration: underline;">Patient Particulars</h3>
-                <p> Name: {{name}}</p>
-                <p> Age: {{Age}}</p>
-                <p>Height: {{Height}}cms</p>
-                <p>Weight: {{Weight}}kgs</p>
-                <p>BMI: {{BMI}} kg/m<sup>2</sup></p>
-                <p>Gender: {{gender}}</p>
+            <p class="patient-info">
+                <span class="label">Name:</span>
+                <span class="value">{{ name }}</span>
+            </p>
+            <p class="patient-info">
+                <span class="label">Age/Gender:</span>
+                <span class="value">{{ Age }}/{{ gender }}</span>
+            </p>
+            <p class="patient-info">
+                <span class="label">Height:</span>
+                <span class="value">{{ Height }} cms</span>
+            </p>
+            <p class="patient-info">
+                <span class="label">Weight:</span>
+                <span class="value">{{ Weight }} kgs</span>
+            </p>
+            <p class="patient-info">
+                <span class="label">BMI:</span>
+                <span class="value">{{ BMI }} kg/m<sup>2</sup></span>
+            </p>
+            {% if gender == "Female" %}
+                <p class="patient-info">
+                    <span class="label">Current Pregnancy Status:</span>
+                    <span class="value"><strong>{{ Pregnancy }}</strong></span>
+                </p>
+                <p class="patient-info">
+                    <span class="label">No of Pregnancies:</span>
+                    <span class="value">{{ Pregnancies }}</span>
+                </p>
+            {% endif %}
         </div>
+        
+        
         <div class="right">
-            <h3 style="text-decoration: underline;">Body Particulars</h3>
-            {% if Glucose >= 80 and Glucose<=120 %}
-                <p>Glucose: <span class="positive"><strong>{{Glucose}} mg/dL</strong></span> Normal range:80-120 mg/dL</p>
-            {% else %}    
-                <p>Glucose: <span class="negative"><strong>{{Glucose}} mg/dL</strong></span> Normal range: 80-120 mg/dL</p>
-            {% endif %}
-            {% if BloodPressure>=140 or BloodPressure<80 %}
-                <p>Blood Pressure:<span class="negative"><strong> {{BloodPressure}} mmHg </strong></span></p>
-            {% elif BloodPressure>=80 and BloodPressure<=130 %}
-                <p>Blood Pressure:<span class="positive"><strong> {{BloodPressure}} mmHg </strong></span></p>
-            {% else %}
-                <p>Blood Pressure:<span class="ideal"><strong> {{BloodPressure}} mmHg </strong></span></p>
-            {% endif %}
-                <p>Skin Thickness: {{SkinThickness}} mm</p>
-                <p>Insulin: {{Insulin}} mcU/mL</p>
-            {%if gender=="Female"%}
-                <p>Pregnancy Status: {{Pregnancy}}</p> 
-                <p>Pregnancies: {{Pregnancies}}</p>
-            {%endif%}
-
-                <p>Diabetes Pedigree Function: {{DiabetesPedigreeFunction}}</p>
+            <h3 style="text-decoration: underline;">Sample Results</h3>
+            <p> Sample collected before 2 hours of meal.</p>
+            <table>
+                <tr>
+                    <th>TEST PARAMETER</th>
+                    <th>RESULT</th>
+                    <th>REFERENCE RANGE</th>
+                </tr>
+                <tr>
+                    <td>Glucose</td>
+                    {% if Glucose >= 80 and Glucose <= 120 %}
+                        <td><span class="positive"><strong>{{ Glucose }} mg/dL</strong></span></td>
+                    {% else %}    
+                        <td><span class="negative"><strong>{{ Glucose }} mg/dL</strong></span></td>
+                    {% endif %}
+                    <td>80-120 mg/dL</td>
+                </tr>
+                <tr>
+                    <td>Blood Pressure</td>
+                    {% if BloodPressure >= 80 and BloodPressure <= 130 %}
+                        <td><span class="positive"><strong>{{ BloodPressure }} mmHg</strong></span></td>
+                    {% elif BloodPressure < 80 %}
+                        <td><span class="negative"><strong>{{ BloodPressure }} mmHg</strong></span></td>
+                    {% else %}
+                        <td><span class="negative"><strong>{{ BloodPressure }} mmHg</strong></span></td>
+                    {% endif %}
+                    <td>80-130 mmHg</td>
+                </tr>
+                <tr>
+                    <td>Skin Thickness</td>
+                    <td>{{ SkinThickness }} mm</td>
+                    <td>0.5-4.0mm</td>
+                </tr>
+                <tr>
+                    <td>Insulin</td>
+                    <td>{{ Insulin }} μIU/mL</td>
+                    <td>2-25μIU/mL</td>
+                </tr>
+                <tr>
+                    <td>Diabetes Pedigree Function</td>
+                    <td>{{ DiabetesPedigreeFunction }}</td>
+                    <td>N/A</td>
+                </tr>
+            </table>
         </div>
     </div>
     <div class="result">
         <h3 style="text-decoration: underline;">Result:</h3>
         {% if result == 'Diabetic' %}
             <div class="diabetes">
-                <p class="negative"><strong>{{result}}</strong></p>
+                <p id="val" class="negative"><strong>{{result}}</strong></p>
+                <p class="type"><strong>{{type}}</strong></p>
                 <blockquote>
                     "Diabetes is just a chapter in your life, not the whole story. With strength, support, and determination, you can turn the page to a healthier future."
                 </blockquote>
@@ -70,7 +121,7 @@
             </div>
         {% else %}
             <div class="non-diabetic">
-                <p class="positive"><strong>{{result}}</strong></p>
+                <p id='val' class="positive"><strong>{{result}}</strong></p>
                 <blockquote>
                     "A non-diabetic life is a gift. Embrace it with a commitment to health and wellness."
                 </blockquote>
@@ -88,9 +139,7 @@
             </div>
         {% endif %}
     </div>
-
     <div class="end">
-        <p>Thank you for using our service. We hope you have a great day ahead!</p>
         <p>Get Well Soon !! </p>
         <p>**********************<strong>End of the Report</strong>**********************</p>
     </div>
