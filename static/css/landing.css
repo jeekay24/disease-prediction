@@ -1,3 +1,6 @@
+body{
+    overflow-x: hidden;
+}
 .report{
     display: flex;
     justify-content: space-between;

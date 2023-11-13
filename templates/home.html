@@ -1,99 +1,89 @@
 <!DOCTYPE html>
-<html >
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Diabetes Prediction</title>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
-  <link rel="icon" href="{{ url_for('static', filename='images/report.png') }}" type="image/x-icon">
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction Form</title>
+    <!-- Include Bootstrap CSS -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
- <div class="login">
-	<h1>Diabetes Prediction</h1>
-    <div class="box-form">
-      <div class="left">
-        <div class="overlay">
-          <h2>Diabetes Prediction</h2>
-          <p>Diabetes is a disease that occurs when your blood glucose, also called blood sugar, is too high. Blood glucose is your main source of energy and comes from the food you eat. Insulin, a hormone made by the pancreas, helps glucose from food get into your cells to be used for energy. Sometimes your body doesn’t make enough—or any—insulin or doesn’t use insulin well. Glucose then stays in your blood and doesn’t reach your cells.</p>
-          <p>Over time, having too much glucose in your blood can cause health problems. Although diabetes has no cure, you can take steps to manage your diabetes and stay healthy.</p>
-          <p>Diabetes is a serious disease. It can often be managed by following a healthy diet, exercising regularly, and using insulin treatments. But if left untreated, it can lead to potential complications that include heart disease, stroke, kidney damage, and nerve damage.</p>
-          <p>Diabetes is a chronic disease that occurs either when the pancreas does not produce enough insulin or when the body cannot effectively use the insulin it produces. Insulin is a hormone that regulates blood sugar. Hyperglycaemia, or raised blood sugar, is a common effect of uncontrolled diabetes and over time leads to serious damage to many of the body's systems, especially the nerves and blood vessels.</p>
-          <p>In 2014, 8.5% of adults aged 18 years and older had diabetes. In 2012 diabetes was the direct cause of 1.5 million deaths. More than 80% of diabetes deaths occur in low- and middle-income countries. WHO projects that diabetes will be the 7th leading cause of death in 2030.</p>
-          <p>Healthy diet, regular physical activity, maintaining a normal body weight and avoiding tobacco use are ways to prevent or delay the onset of type 2 diabetes.</p>
-          <p>Diabetes can be treated and its consequences avoided or delayed with diet, physical activity, medication and regular screening and treatment for complications.</p>
-          <p>Source: <a href="http://www.who.int/mediacentre/factsheets/fs312/en/">WHO</a></p>
-          <div class="info">
-            <h3>Average Values:</h3>
-              <p>Glucose: 80-120 mg/dL</p>
-              <p>Blood Pressure: 66-160 mm Hg</p>
-              <p>Skin Thickness: 0.5-3 mm</p>
-              <p>Insulin: 16-166 mIU/L</p>
-              <p>BMI: 18.5-24.9 kg/m2</p>
-              <p>Diabetes Pedigree Function: 0.078-2.42</p>
-            <h3>Diabetes values:</h3>
-              <p>Glucose: >200 mg/dL</p>
-              <p>Blood Pressure: >140 mm Hg</p>
-              <p>Skin Thickness: >3 mm</p>
-              <p>Insulin: >166 mIU/L</p>
-              <p>BMI: >30 kg/m2</p>
-              <p>Diabetes Pedigree Function: >2.42</p>
-        </div>
-        </div>
-      </div>
-      <div class="right">
-     <!-- Main Input For Receiving Query to our ML -->
-        <form class="forms" action="{{ url_for('predict_datapoint')}}" method="post">
+    <div class="container mt-5">
+        <h2>Health Information Form</h2>
+        <form class="forms" action="{{ url_for('predict_datapoint') }}" method="post">
             <h3 class="form-head">Fill the details appropriately</h3>
-            <input type="text" name="name" placeholder="Name" required="required" /><br>
-            <input type="text" name="Age" placeholder="Age" required="required" /><br>
-
-            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-              <label for="gender" style="margin-right:10px;">Gender : </label>
-                <input type="radio" class="btn-check" name="gender" id="btnradio1" autocomplete="off" value="Male" required>
-                <label class="btn btn-outline-primary" for="btnradio1">Male</label>
-              
-                <input type="radio" class="btn-check" name="gender" id="btnradio2" autocomplete="off" value="Female" required>
-                <label class="btn btn-outline-primary" for="btnradio2">Female</label>
-              
-                <input type="radio" class="btn-check" name="gender" id="btnradio3" autocomplete="off" value="Others" required>
-                <label class="btn btn-outline-primary" for="btnradio3">Others</label>
+            <div class="mb-3">
+                <label for="name" class="form-label">Name:</label>
+                <input type="text" class="form-control" name="name" placeholder="Name" required="required">
             </div>
-            <!--<div class="forms" id="pregnancyQuestion" style="display:block;">-->
-                <div id="pregnancyQuestion" class="" role="" style="display:block;">
-                  <br>
-                  <label for="pregnancy" style="margin-right:10px">Are you Pregnant now? : </label>
-                    <input type="radio" class="btn-check" name="pregnancy" id="btnradio4" autocomplete="off" value="Pregnant" >
-                    <label class="btn btn-outline-primary" for="btnradio4">Yes</label>
+            <div class="mb-3">
+                <label for="Age" class="form-label">Age:</label>
+                <input type="text" class="form-control" name="Age" placeholder="Age" required="required">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label"style="margin-right:10px;">Gender:</label>
+              <div class="form-check form-check-inline">
+                  <div class="btn-group" role="group" aria-label="Gender radio toggle button group">
+                      <input type="radio" class="btn-check" name="gender" id="maleRadio" value="Male" required>
+                      <label class="btn btn-outline-primary" for="maleRadio">Male</label>
+                    
+                      <input type="radio" class="btn-check" name="gender" id="femaleRadio" value="Female" required>
+                      <label class="btn btn-outline-primary" for="femaleRadio">Female</label>
+                    
+                      <input type="radio" class="btn-check" name="gender" id="othersRadio" value="Others" required>
+                      <label class="btn btn-outline-primary" for="othersRadio">Others</label>
+                  </div>
+              </div>
+
+            <div class="mb-3" id="pregnancyQuestion" style="display:block;">
+              <label class="form-label">Are you pregnant?</label>
+              <div class="btn-group" role="group" aria-label="Pregnant radio toggle button group">
+                  <input type="radio" class="btn-check" name="pregnancy" id="pregnantRadio" value="Pregnant">
+                  <label class="btn btn-outline-primary" for="pregnantRadio">Yes</label>
                   
-                    <input type="radio" class="btn-check" name="pregnancy" id="btnradio5" autocomplete="off" value="Non-Pregnant" >
-                    <label class="btn btn-outline-primary" for="btnradio5">No</label>
-                </div>
-            <input style="display:block;" type="text" name="Pregnancies" id="pregnanciesInput" placeholder="No of Pregnancies"  />
-            <input type="text" name="Glucose" placeholder="Glucose" required="required" /><br>
-            <input type="text" name="BloodPressure" placeholder="Blood Pressure (in mm Hg)" required="required" /><br>
-            <input type="text" name="SkinThickness" placeholder="Skin Thickness (in mm)" required="required" /><br>
-            <input type="text" name="Insulin" placeholder="Insulin" required="required" /><br>
-            <input type="text" name="BMI" placeholder="BMI" required="required" /><br>
-            <input type="text" name="DiabetesPedigreeFunction" placeholder="Diabetes Pedigree Function" required="required" /><br>
-            <button type="submit" class="custom-btn">Generate Report</button>
+                  <input type="radio" class="btn-check" name="pregnancy" id="nonPregnantRadio" value="Non-Pregnant">
+                  <label class="btn btn-outline-primary" for="nonPregnantRadio">No</label>
+              </div>
+            </div>
+            <div class="mb-3" id="pregnanciesInput">
+                <label for="Pregnancies" class="form-label">Number of Pregnancies:</label>
+                <input type="number" class="form-control" name="Pregnancies" placeholder="No of Pregnancies">
+            </div>
+            <div class="mb-3">
+                <label for="Glucose" class="form-label">Glucose:</label>
+                <input type="text" class="form-control" name="Glucose" placeholder="Glucose" required="required">
+            </div>
+            <div class="mb-3">
+                <label for="BloodPressure" class="form-label">Blood Pressure (in mm Hg):</label>
+                <input type="text" class="form-control" name="BloodPressure" placeholder="Blood Pressure (in mm Hg)" required="required">
+            </div>
+            <div class="mb-3">
+                <label for="SkinThickness" class="form-label">Skin Thickness (in mm):</label>
+                <input type="text" class="form-control" name="SkinThickness" placeholder="Skin Thickness (in mm)" required="required">
+            </div>
+            <div class="mb-3">
+                <label for="Insulin" class="form-label">Insulin:</label>
+                <input type="text" class="form-control" name="Insulin" placeholder="Insulin" required="required">
+            </div>
+            <div class="mb-3">
+                <label for="BMI" class="form-label">BMI:</label>
+                <input type="text" class="form-control" name="BMI" placeholder="BMI" required="required">
+            </div>
+            <div class="mb-3">
+                <label for="DiabetesPedigreeFunction" class="form-label">Diabetes Pedigree Function:</label>
+                <input type="text" class="form-control" name="DiabetesPedigreeFunction" placeholder="Diabetes Pedigree Function" required="required">
+            </div>
+            <button type="submit" class="btn btn-primary">Generate Report</button>
         </form>
-      </div>
- </div>
- {{result}}
- {{name}}
- {{Age}}
- {{BMI}}
- {{Pregnancies}}
- {{Glucose}}
- {{BloodPressure}}
- {{SkinThickness}}
- {{Insulin}}
- {{DiabetesPedigreeFunction}}
- {{gender}}
- {{type}}
- {{pregnancy}}
+    </div>
+
+    <!-- Include Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
