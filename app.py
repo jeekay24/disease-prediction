@@ -20,12 +20,12 @@ model = pickle.load(modelforpred)
 
 ## Route for homepage
 
-# @app.route('/')
-# def index():
-#     return render_template('index.html')
+@app.route('/',methods=['GET','POST'])
+def index():
+    return render_template('index.html')
 
 ## Route for Single data point prediction
-@app.route('/',methods=['GET','POST'])
+@app.route('/diabetes',methods=['GET','POST'])
 def predict_datapoint():
     result=""
     current_datetime = datetime.datetime.now()
@@ -67,7 +67,7 @@ def predict_datapoint():
         else:
             result ='Non-Diabetic'
             
-        return render_template('single_prediction.html',result=result,name=name,Age=Age,BMI=BMI,Pregnancies=Pregnancies,Glucose=Glucose,BloodPressure=BloodPressure,Insulin=Insulin,DiabetesPedigreeFunction=DiabetesPedigreeFunction,SkinThickness=SkinThickness,gender=gender,Pregnancy=pregnancy,datetime=f_datetime,type=classification)
+        return render_template('diabetes.html',result=result,name=name,Age=Age,BMI=BMI,Pregnancies=Pregnancies,Glucose=Glucose,BloodPressure=BloodPressure,Insulin=Insulin,DiabetesPedigreeFunction=DiabetesPedigreeFunction,SkinThickness=SkinThickness,gender=gender,Pregnancy=pregnancy,datetime=f_datetime,type=classification)
 
     else:
         return render_template('home.html')
