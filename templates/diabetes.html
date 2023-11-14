@@ -87,18 +87,49 @@
                 </tr>
                 <tr>
                     <td>Skin Thickness</td>
-                    <td>{{ SkinThickness }} mm</td>
-                    <td>0.5-4.0mm</td>
+                    {% if SkinThickness >= 0.5 and SkinThickness <= 4.0 %}
+                        <td><span class="positive"><strong>{{ SkinThickness }} mm</strong></span></td>
+                        <td>0.5-4.0 mm</td>
+                    {% endif %}
+                    {% if SkinThickness > 4.0 %}
+                        <td><span class="negative"><strong>{{ SkinThickness }} mm</strong></span></td>
+                        <td>0.5-4.0 mm</td>
+                    {% endif %}
+                    {% if SkinThickness < 0.5 %}
+                        <td><span class="negative"><strong>{{ SkinThickness }} mm</strong></span></td>
+                        <td>0.5-4.0 mm</td>
+                    {% endif %}
                 </tr>
+                
                 <tr>
                     <td>Insulin</td>
-                    <td>{{ Insulin }} μIU/mL</td>
-                    <td>2-25μIU/mL</td>
+                    {% if Insulin >= 2 and Insulin <= 25 %}
+                        <td><span class="positive"><strong>{{ Insulin }} μIU/mL</strong></span></td>
+                        <td>2-25μIU/mL</td>
+                    {% endif %}
+                    {% if Insulin > 25 %}
+                        <td><span class="negative"><strong>{{ Insulin }} μIU/mL</strong></span></td>
+                        <td>2-25μIU/mL</td>
+                    {% endif %}
+                    {% if SkinThickness < 2 %}
+                        <td><span class="negative"><strong>{{ Insulin }} μIU/mL</strong></span></td>
+                        <td>2-25μIU/mL</td>
+                    {% endif %}
                 </tr>
                 <tr>
                     <td>Diabetes Pedigree Function</td>
-                    <td>{{ DiabetesPedigreeFunction }}</td>
-                    <td>N/A</td>
+                    {% if DiabetesPedigreeFunction >= 0.5 and DiabetesPedigreeFunction <= 0.9 %}
+                        <td><span class="positive"><strong>{{ DiabetesPedigreeFunction }} No Risk</strong></span></td>
+                        <td>0.5-0.9</td>
+                    {% endif %}
+                    {% if DiabetesPedigreeFunction > 0.9 %}
+                        <td><span class="negative"><strong>{{ DiabetesPedigreeFunction }} Hish Risk</strong></span></td>
+                        <td>0.5-0.9</td>
+                    {% endif %}
+                    {% if DiabetesPedigreeFunction < 0.5 %}
+                        <td><span class="negative"><strong>{{ DiabetesPedigreeFunction }} Low Risk</strong></span></td>
+                        <td>0.5-0.9</td>
+                    {% endif %}
                 </tr>
             </table>
         </div>
